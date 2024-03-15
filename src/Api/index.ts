@@ -20,15 +20,10 @@ class News {
     }
   }
 
-  // public static async getNewyorkTimes(searchTerm: string, date: string) {
-  public static async getNewyorkTimes(
-    searchTerm: string,
-    date?: Date | null
-  ) {
+  public static async getNewyorkTimes(searchTerm: string) {
     try {
       return await axios.get(
-        `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=source:("The New York Times") AND headline:("${searchTerm}")&from=${date}&api-key=9HKaJ0YwMGekebUCci3sO0h1GmXSVnA8`
-        // `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${date}&fq=source:("The New York Times") AND headline:("${searchTerm}")&api-key=9HKaJ0YwMGekebUCci3sO0h1GmXSVnA8`
+        `https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=source:("The New York Times") AND headline:("${searchTerm}")&api-key=9HKaJ0YwMGekebUCci3sO0h1GmXSVnA8`
       );
     } catch (error) {
       return Promise.reject(error);

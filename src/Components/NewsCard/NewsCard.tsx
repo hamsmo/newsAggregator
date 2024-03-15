@@ -1,12 +1,11 @@
-import { Link, Typography } from "@mui/material";
-import { Box } from "@mui/system";
 import React from "react";
-
+import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
 interface Article {
   title: string;
   category: string;
   url: string;
-  publishedAt: string;
+  publishedAt: Date;
   source: any;
   author: string;
 }
@@ -34,7 +33,7 @@ const NewsCard = ({ item }: Item) => {
         </Typography>
         <Typography variant="h6">Author: {item.author}</Typography>
         <Typography variant="h6">
-          Published at: {item.publishedAt}
+          Published at: {getFormattedDate(item.publishedAt)}
         </Typography>
       </>
     </Box>

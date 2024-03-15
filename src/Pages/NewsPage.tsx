@@ -19,7 +19,7 @@ interface Article {
   title: string;
   category: string;
   url: string;
-  publishedAt: string;
+  publishedAt: Date;
   source: any;
   author: string;
 }
@@ -38,21 +38,13 @@ const NewsPage = () => {
     category: string;
     source: string;
     author: string;
-    date: string;
+    // date: string;
   }>({
     category: "",
     source: "",
     author: "",
-    date: "",
+    // date: "",
   });
-
-  const getFormattedDate = (date: Date) => {
-    return new Date(date).toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-  };
 
   const fetchData = async () => {
     try {
@@ -80,7 +72,7 @@ const NewsPage = () => {
           title: article.headline.main,
           category: article.section_name,
           url: article.web_url,
-          publishedAt: getFormattedDate(article.pub_date),
+          publishedAt: article.pub_date,
           source: article.source,
           author: `${article.byline.person[0]?.firstname} ${article.byline.person[0]?.lastname}`,
         })),
@@ -107,14 +99,14 @@ const NewsPage = () => {
       const authorMatch =
         !filterObject.author || item.author === filterObject.author;
 
-      const dateMatch =
-        !filterObject.date || item.publishedAt === filterObject.date;
+      // const dateMatch =
+      //   !filterObject.date || item.publishedAt === filterObject.date;
 
-      return categoryMatch && sourceMatch && authorMatch && dateMatch;
+      return categoryMatch && sourceMatch && authorMatch;
     });
 
     setFilteredData(filteredArticles);
-  }, [filterObject]);
+  }, [data, filterObject]);
 
   useEffect(() => {
     if (data.length !== 0) {
@@ -208,7 +200,8 @@ const NewsPage = () => {
           />
         </Grid>
 
-        {/* <Grid item xs={12} md={6} lg={3}>
+        {/* ---- WIP: ADDING FILTER BY DATE -----
+        <Grid item xs={12} md={6} lg={3}>
           <DatePicker
             selected={filterObject.date}
             onChange={(v) =>
