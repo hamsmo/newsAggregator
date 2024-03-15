@@ -36,12 +36,15 @@ const SelectMenu = ({
         value={selectOption}
         onChange={(e) => onChange(e.target.value)}
         endAdornment={
-          <InputAdornment position="end" >
+          <InputAdornment position="end">
             <IconButton
               disabled={!selectOption}
               onClick={handleClear}
               onMouseDown={(event) => event.preventDefault()}
               edge="end"
+              sx={{
+                marginRight: 1,
+              }}
             >
               <ClearIcon />
             </IconButton>

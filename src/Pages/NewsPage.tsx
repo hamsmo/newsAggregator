@@ -9,20 +9,14 @@ import {
 } from "@mui/material";
 
 import News from "../Api";
+import { Article } from "../Interfaces";
 
-import NewsCard from "../Components/NewsCard/NewsCard";
-import SelectMenu from "../Components/SelectMenu/SelectMenu";
+import NewsCard from "../Components/NewsCard";
+import SelectMenu from "../Components/SelectMenu";
+
+
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
-
-interface Article {
-  title: string;
-  category: string;
-  url: string;
-  publishedAt: Date;
-  source: any;
-  author: string;
-}
 
 const NewsPage = () => {
   const [data, setData] = useState<Article[]>([]);
